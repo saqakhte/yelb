@@ -19,12 +19,12 @@ export YELB_DB_SERVER_ENDPOINT="${YELB_DB_SERVER_ENDPOINT:-localhost}"
 ###########            CORE HOUSEKEEPING        ###########
 ###########################################################
 export HOMEDIR="/yelb-setup"
-yum update -y 
-yum install -y git
+apt-get update -y 
+apt-get install -y git
 if [ ! -d $HOMEDIR ]; then
     mkdir $HOMEDIR
     cd $HOMEDIR
-    git clone http://github.com/mreferre/yelb
+    git clone http://github.com/saqakhte/yelb
 fi 
 ###########################################################
 
@@ -36,17 +36,16 @@ echo "YELB_DDB_CACHE = " $YELB_DDB_CACHE
 echo "AWS_REGION = " $AWS_REGION
 
 cd $HOMEDIR
-yum update -y
-amazon-linux-extras install epel -y
-amazon-linux-extras install ruby2.6 -y
-yum install -y postgresql
-yum install -y ruby-devel
-yum install -y gcc
-yum install -y postgresql-devel
-gem install pg -v 1.2.2 --no-document
-gem install redis --no-document
-gem install sinatra --no-document
-gem install aws-sdk-dynamodb --no-document
+sudo apt-get update 
+
+sudo apt-get install -y postgresql postgresql-contrib libpq-dev
+sudo apt-get install -y ruby
+sudo apt-get install -y gcc
+#sudo apt-get install -y postgresql-devel
+sudo gem install pg -v 1.5.9 --no-document
+sudo gem install redis --no-document
+sudo gem install sinatra --no-document
+sudo gem install aws-sdk-dynamodb --no-document
 cd ./yelb/yelb-appserver
 ruby yelb-appserver.rb -o 0.0.0.0 & 
 

@@ -31,12 +31,12 @@ export LOG_OUTPUT="/yelb-setup.log"
 ###########            CORE HOUSEKEEPING        ###########
 ###########################################################
 export HOMEDIR="/yelb-setup"
-yum update -y 
-yum install -y git
+apt-get update -y 
+apt-get install -y git bzip2
 if [ ! -d $HOMEDIR ]; then
     mkdir $HOMEDIR
     cd $HOMEDIR
-    git clone http://github.com/mreferre/yelb
+    git clone http://github.com/saqakhte/yelb
 fi 
 ###########################################################
 
@@ -47,11 +47,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 . ~/.nvm/nvm.sh
-nvm install 10.13
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. ~/.nvm/nvm.sh
+
+nvm install lts/iron
+
 # the echo here after has been introduced due to a new prompt for enabling / disabling Google analytics 
 # Note: this may not be strictly required (to be investigated)  
 echo N | npm install -g @angular/cli@6.0.0
@@ -84,6 +82,7 @@ sed -i "s/YELB_APPSERVER_ENDPOINT/$YELB_APPSERVER_ENDPOINT/" ./clarity-seed/src/
 # the custom flag should be used when you need to have the browser point to a different target that isn't the origin
 # e.g. in a serverless deployment where the Angular UI is deployed on an S3 bucket and the yelb-appserver logic is exposed through an API Gateway 
 cd ./clarity-seed/src
+npm install -g yarn
 npm install
 npm install node-sass@latest
 # the specific node-sass@latest had to be called out due to an error during the build of the app (ng build)
@@ -96,8 +95,8 @@ ng build --environment=prod --output-path=/custom/dist/
 
 cd $HOMEDIR
 cd yelb/yelb-ui
-amazon-linux-extras install epel -y
-yum install -y nginx
+
+sudo apt-get install -y nginx
 echo "server {" | sudo tee $NGINX_CONF > /dev/null 
 echo "    listen       80;" | sudo tee -a $NGINX_CONF > /dev/null
 echo "    server_name  localhost;" | sudo tee -a $NGINX_CONF > /dev/null

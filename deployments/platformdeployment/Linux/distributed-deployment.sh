@@ -6,13 +6,13 @@
 # Run this script on the redis-server instance:
 
 #!/bin/bash
-curl https://raw.githubusercontent.com/mreferre/yelb/master/deployments/platformdeployment/Linux/redis-server.sh | bash 
+curl https://raw.githubusercontent.com/saqakhte/yelb/master/deployments/platformdeployment/Linux/redis-server.sh | bash 
 
 
 # Run this script on the yelb-db instance:
 
 #!/bin/bash
-curl https://raw.githubusercontent.com/mreferre/yelb/master/deployments/platformdeployment/Linux/yelb-db.sh | bash
+curl https://raw.githubusercontent.com/saqakhte/yelb/master/deployments/platformdeployment/Linux/yelb-db.sh | bash
 
 
 # Run this script on the yelb-appserver instance:
@@ -20,12 +20,12 @@ curl https://raw.githubusercontent.com/mreferre/yelb/master/deployments/platform
 #!/bin/bash
 export REDIS_SERVER_ENDPOINT=IP/FQDN-redis
 export YELB_DB_SERVER_ENDPOINT=IP/FQDN-db
-curl https://raw.githubusercontent.com/mreferre/yelb/master/deployments/platformdeployment/Linux/yelb-appserver.sh | bash
+curl https://raw.githubusercontent.com/saqakhte/yelb/master/deployments/platformdeployment/Linux/yelb-appserver.sh | bash
 
 
 # Run this script on the yelb-ui instance:
 
 #!/bin/bash
 export YELB_APPSERVER_ENDPOINT=IP/FQDN-appserver
-curl https://raw.githubusercontent.com/mreferre/yelb/master/deployments/platformdeployment/Linux/yelb-ui.sh | bash
+curl https://raw.githubusercontent.com/saqakhte/yelb/master/deployments/platformdeployment/Linux/yelb-ui.sh | bash
 
