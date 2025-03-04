@@ -6,6 +6,7 @@ metadata:
   labels:
     app: redis-server
     tier: cache
+    HS_WORKLOAD_TAG1: yelb
 spec:
   type: ClusterIP
   ports:
@@ -21,6 +22,7 @@ metadata:
   labels:
     app: yelb-db
     tier: backenddb
+    HS_WORKLOAD_TAG1: yelb
 spec:
   type: ClusterIP
   ports:
@@ -36,6 +38,7 @@ metadata:
   labels:
     app: yelb-appserver
     tier: middletier
+    HS_WORKLOAD_TAG1: yelb
 spec:
   type: ClusterIP
   ports:
@@ -51,6 +54,7 @@ metadata:
   labels:
     app: yelb-ui
     tier: frontend
+    HS_WORKLOAD_TAG1: yelb
 spec:
   type: LoadBalancer
   ports:
@@ -76,10 +80,14 @@ spec:
       labels:
         app: yelb-ui
         tier: frontend
+        HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
       - name: yelb-ui
         image:  mreferre/yelb-ui:0.10
+        env:
+        - name: HS_WORKLOAD_TAG1
+          value: yelb
         ports:
         - containerPort: 80
 ---
@@ -98,10 +106,14 @@ spec:
       labels:
         app: redis-server
         tier: cache
+        HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
       - name: redis-server
         image: redis:4.0.2
+        env:
+        - name: HS_WORKLOAD_TAG1
+          value: yelb
         ports:
         - containerPort: 6379
 ---
@@ -120,10 +132,14 @@ spec:
       labels:
         app: yelb-db
         tier: backenddb
+        HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
       - name: yelb-db
         image:  mreferre/yelb-db:0.6
+        env:
+        - name: HS_WORKLOAD_TAG1
+          value: yelb
         ports:
         - containerPort: 5432
 ---
@@ -142,10 +158,14 @@ spec:
       labels:
         app: yelb-appserver
         tier: middletier
+        HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
       - name: yelb-appserver
         image:  mreferre/yelb-appserver:0.7
+        env:
+        - name: HS_WORKLOAD_TAG1
+          value: yelb
         ports:
         - containerPort: 4567
 
