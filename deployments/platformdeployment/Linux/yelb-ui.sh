@@ -119,7 +119,7 @@ echo "        root   "$HOMEDIR"/yelb/yelb-ui/clarity-seed/src/custom/dist;" | su
 echo "    }" | sudo tee -a $NGINX_CONF > /dev/null
 echo "}" | sudo tee -a $NGINX_CONF > /dev/null
 sudo rm $NGINX_MAIN
-echo "user  nginx;" | sudo tee -a $NGINX_MAIN > /dev/null
+echo "user  www-data;" | sudo tee -a $NGINX_MAIN > /dev/null
 echo "worker_processes  1;" | sudo tee -a $NGINX_MAIN > /dev/null
 echo "" | sudo tee -a $NGINX_MAIN > /dev/null
 echo "error_log  /var/log/nginx/error.log warn;" | sudo tee -a $NGINX_MAIN > /dev/null

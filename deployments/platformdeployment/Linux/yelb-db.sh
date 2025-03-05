@@ -40,3 +40,8 @@ sudo -u postgres psql -v ON_ERROR_STOP=1 <<-EOSQL
 		INSERT INTO restaurants (name, count) VALUES ('ihop', 0);
 EOSQL
 
+sudo -u postgres psql -v ON_ERROR_STOP=1 <<-EOSQL
+ALTER USER postgres WITH PASSWORD 'postgres';
+EOSQL
+
+
