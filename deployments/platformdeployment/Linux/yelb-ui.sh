@@ -49,11 +49,12 @@ export NVM_DIR="$HOME/.nvm"
 . ~/.nvm/nvm.sh
 
 nvm install lts/iron
+nvm alias default lts/iron
 
 # the echo here after has been introduced due to a new prompt for enabling / disabling Google analytics 
 # Note: this may not be strictly required (to be investigated)  
-echo N | npm install -g @angular/cli@6.0.0
-echo N | npm install node-sass@4.13.1
+#echo N | npm install -g @angular/cli@6.0.0
+#echo N | npm install node-sass@4.13.1
 
 
 cd $HOMEDIR
@@ -82,9 +83,9 @@ sed -i "s/YELB_APPSERVER_ENDPOINT/$YELB_APPSERVER_ENDPOINT/" ./clarity-seed/src/
 # the custom flag should be used when you need to have the browser point to a different target that isn't the origin
 # e.g. in a serverless deployment where the Angular UI is deployed on an S3 bucket and the yelb-appserver logic is exposed through an API Gateway 
 cd ./clarity-seed/src
-npm install -g yarn
-npm install
-npm install node-sass@latest
+#npm install -g yarn
+npm install --legacy-peer-deps
+npm install node-sass@latest --legacy-peer-deps
 # the specific node-sass@latest had to be called out due to an error during the build of the app (ng build)
 # building while deploying isn't probably the best way to handle this as there is a lot of variables. 
 # ultimately the build will need to move outside of the deployment script and this part below should just be a copy of the artifact
@@ -139,5 +140,5 @@ echo "    sendfile        on;" | sudo tee -a $NGINX_MAIN > /dev/null
 echo "    keepalive_timeout  65;" | sudo tee -a $NGINX_MAIN > /dev/null
 echo "    include /etc/nginx/conf.d/*.conf;" | sudo tee -a $NGINX_MAIN > /dev/null
 echo "}" | sudo tee -a $NGINX_MAIN > /dev/null
-chkconfig nginx on
-service nginx start
+
+systemctl restart nginx 
