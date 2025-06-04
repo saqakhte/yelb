@@ -136,7 +136,7 @@ spec:
     spec:
       containers:
       - name: yelb-db-stg
-        image:  mreferre/yelb-db:0.6
+        image:  sakhter86/yelb-db:1
         env:
         - name: HS_WORKLOAD_TAG1
           value: yelb
