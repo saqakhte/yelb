@@ -83,7 +83,7 @@ spec:
         HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
-      - name: yelb-ui
+      - name: yelb-ui-dev
         image:  mreferre/yelb-ui:0.10
         env:
         - name: HS_WORKLOAD_TAG1
@@ -109,7 +109,7 @@ spec:
         HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
-      - name: redis-server
+      - name: redis-server-dev
         image: redis:4.0.2
         env:
         - name: HS_WORKLOAD_TAG1
@@ -135,8 +135,8 @@ spec:
         HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
-      - name: yelb-db
-        image:  mreferre/yelb-db:0.6
+      - name: yelb-db-dev
+        image:  sakhter86/yelb-db:1
         env:
         - name: HS_WORKLOAD_TAG1
           value: yelb
@@ -161,7 +161,7 @@ spec:
         HS_WORKLOAD_TAG1: yelb
     spec:
       containers:
-      - name: yelb-appserver
+      - name: yelb-appserver-dev
         image:  mreferre/yelb-appserver:0.7
         env:
         - name: HS_WORKLOAD_TAG1
