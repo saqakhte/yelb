@@ -81,6 +81,7 @@ spec:
         app: yelb-ui
         tier: frontend
         HS_WORKLOAD_TAG1: yelb
+        app.kubernetes.io/name: yelb-ui
     spec:
       containers:
       - name: yelb-ui-stg
@@ -107,6 +108,7 @@ spec:
         app: redis-server
         tier: cache
         HS_WORKLOAD_TAG1: yelb
+        app.kubernetes.io/name: redis-server
     spec:
       containers:
       - name: redis-server-stg
@@ -133,6 +135,7 @@ spec:
         app: yelb-db
         tier: backenddb
         HS_WORKLOAD_TAG1: yelb
+        app.kubernetes.io/name: yelb-db
     spec:
       containers:
       - name: yelb-db-stg
@@ -159,6 +162,7 @@ spec:
         app: yelb-appserver
         tier: middletier
         HS_WORKLOAD_TAG1: yelb
+        app.kubernetes.io/name: yelb-appserver
     spec:
       containers:
       - name: yelb-appserver-stg
